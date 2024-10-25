@@ -15,8 +15,9 @@
       <div class="FieldItem hidePassword">
         <input :type="showPassword ? 'text' : 'password'" id="password" placeholder="Введите значение"
           v-model="formData.password" />
-        <img :src="showPassword ? '/src/assets/Icons/onPasswordIcon.png' : '/src/assets/Icons/offPasswordIcon.png'"
-          alt="0" @click="togglePasswordVisibility" />
+          <img :src="showPassword ? onPasswordIcon : offPasswordIcon"
+       alt="Toggle Password Visibility"
+       @click="togglePasswordVisibility" />
       </div>
     </div>
 
@@ -39,6 +40,8 @@
 <script setup>
 import { ref } from 'vue';
 import { useUserStore } from '../store/UserStore';
+import onPasswordIcon from '../assets/Icons/onPasswordIcon.png';
+import offPasswordIcon from '../assets/Icons/offPasswordIcon.png';
 
 const store = useUserStore();
 const emit = defineEmits(['changeForm']);
