@@ -1,0 +1,207 @@
+:root {
+  --green: #B1C909;
+  --dark-green: #97AB0D;
+  --buttonActiveColor: #819400;
+  --errorColor: #FF7461;
+  --gray: #9DA5AF;
+  font-family: Montserrat, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: #FFF;
+  background-color: #0A1F38;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+
+button {
+  border-radius: 32px;
+  border: 1px solid transparent;
+  padding: 0.4em 1.75em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--green);
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  background-color: var(--dark-green);
+}
+button:focus,
+button:focus-visible,
+button:active {
+  background-color: var(--buttonActiveColor);
+}
+button:disabled {
+  background-color: var(--gray);
+  color: white;
+  cursor: not-allowed;
+}
+
+#app {
+  width: 100%;
+}
+
+/* Styling forms */
+
+
+form {
+  background: #1B2F46;
+  border-radius: 40px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  min-width: 780px; 
+  font-size: 18px;
+  padding: 40px 80px;
+  box-sizing: border-box;
+}
+
+label {
+  color: var(--gray);
+  padding-left: 20px;
+}
+input,
+textarea {
+  color: black;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  width: 100%;
+}
+
+.FieldItem {
+  border-radius: 36px;
+  background-color: #fff;
+  padding: 15px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+.email::after {
+  content: '';
+  display: block;
+  background-image: url('./assets/Icons/EmailIcon.png');
+  background-size: 100% 100%;
+  width: 24px;
+  height: 24px;
+}
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 80%;
+}
+.action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+}
+.closeWindow {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  background-image: url('./assets/Icons/CloseIcon.png') ;
+  background-repeat: no-repeat;
+  background-size: 50% 50%;
+  background-position: 50% 50%;
+  border-radius: 50%;
+  width: 2em;
+  height: 2em;
+  padding: 10px;
+}
+textarea {
+  resize: none;
+}
+
+@media screen and (max-width: 1440px) {
+  form {
+    padding: 20px 40px;
+    min-width: 600px; 
+  }
+  .fieldGroup {
+    width: 90%;
+  }
+
+}
+@media screen and (max-width: 799px) {
+  form {
+    min-width: 600px; 
+    padding: 20px 30px;
+  }
+  .fieldGroup {
+    width: 90%;
+  }
+
+}
+@media screen and (max-width: 550px) {
+  form {
+    padding: 10px;
+    width: 100%;
+    min-width: 350px;
+    height: 100vh;
+    border-radius: 0;
+    border-top-left-radius: 32px;
+
+  }
+  .action {
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+    gap: 20px;
+    width: 100%;
+  }
+  .fieldGroup {
+    width: 100%;
+  }
+  form button {
+    width: 100%;
+  }
+  
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
