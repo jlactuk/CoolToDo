@@ -15,10 +15,10 @@
 </template>
 <script setup>
 import { ref, computed } from 'vue';
+import { useUserStore } from '../store/UserStore';
 import SignInComponent from './LogIn.vue';
 import SignUpComponent from './SignUp.vue';
 import ToDoList from './ToDoList.vue';
-import { useUserStore } from '../store/UserStore';
 
 const store = useUserStore();
 const openWindow = defineModel();

@@ -6,8 +6,6 @@
     </article>
 </template>
 <script setup>
-import { defineProps, defineEmits } from 'vue';
-
 const props = defineProps(['data'])
 const emit = defineEmits(['delete'])
 

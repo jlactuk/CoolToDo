@@ -20,7 +20,7 @@
     </form>
 </template>
 <script setup>
-import { ref, computed, defineEmits } from 'vue';
+import { ref, computed } from 'vue';
 
 const formData = ref({
     title: '',

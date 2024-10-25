@@ -10,7 +10,7 @@
 </template>
 
 <script setup>
-import { ref, computed, defineModel } from 'vue';
+import { ref, computed } from 'vue';
 import Profile from "./Profile.vue";
 import { useUserStore } from '../store/UserStore'
 

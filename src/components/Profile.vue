@@ -10,7 +10,7 @@
     </div>
 </template>
 <script setup>
-import { onMounted, ref } from 'vue';
+import { ref } from 'vue';
 import { useUserStore } from '../store/UserStore';
 
 const Email = ref('');
