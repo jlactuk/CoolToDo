@@ -2,14 +2,17 @@
     <article class="item">
         <h3 class="title">{{ props.data.title }}</h3>
         <p class="content">{{ props.data.content }}</p>
-        <button class="deleteNote" @click="removeItem(props.data.id)">Удалить</button>
+        <button class="deleteNote" @click="removeItem(props.data.id)"><removeButton/> Удалить</button>
     </article>
 </template>
 <script setup>
+import removeButton from "../IconsVue/CloseIcon.vue"
+
 const props = defineProps(['data'])
 const emit = defineEmits(['delete'])
 
 function removeItem(id) {
+  
     emit('delete', id)
 }
 </script>

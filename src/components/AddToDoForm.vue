@@ -5,14 +5,14 @@
             <label for="title">Название заметки</label>
             <input type="text" id="title" class="FieldItem" placeholder="Введите название" v-model.trim="formData.title"
                 maxlength="100">
-            <span :class="formData.content.length < 100 ? 'charCounter' : 'errorCounter'">{{ formData.title.length }} /
+            <span :class="formData.content.length < 100 ? 'charCounter' : 'errorCharCounter'">{{ formData.title.length }} /
                 100</span>
         </div>
         <div class="fieldGroup">
             <label for="content">Текст заметки</label>
             <textarea placeholder="Введите текст" id="content" class="FieldItem" cols="30" rows="10"
                 v-model.trim="formData.content" maxlength="255"></textarea>
-            <span :class="formData.content.length < 255 ? 'charCounter' : 'errorCounter'">{{ formData.content.length }}
+            <span :class="formData.content.length < 255 ? 'charCounter' : 'errorCharCounter'">{{ formData.content.length }}
                 / 255</span>
         </div>
         <button class="addNote" :disabled="!access">Добавить</button>
@@ -50,7 +50,7 @@ span {
     color: var(--gray);
 }
 
-.errorCounter {
+.errorCharCounter {
     color: var(--errorColor);
 }
 

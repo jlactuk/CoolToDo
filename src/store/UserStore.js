@@ -1,18 +1,23 @@
 import { defineStore } from "pinia"
 import { ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+
+
 export const useUserStore = defineStore('user', () => {
   const isAuth = ref(false);
   let email = '';
   let token = 0;
+  const router = useRouter()
 
+  function getToken() {
+    return token;
+  }
   function setData(newToken) {
     if (!newToken) return;
     token = newToken;
     isAuth.value = true;
-
+    router.push('/todo');
   }
-
-  // Logic of User
 
 
   //  Structure data : {
@@ -48,6 +53,7 @@ export const useUserStore = defineStore('user', () => {
 
   async function SignIn(userData) {
     try {
+      
       const response = await fetch('https://dist.nd.ru/api/auth', {
         headers: {
           'Content-type': 'application/json',
@@ -80,6 +86,7 @@ export const useUserStore = defineStore('user', () => {
 
   async function exitUser() {
     try {
+      
       const response = await fetch(`https://dist.nd.ru/api/auth`, {
         headers: {
           'Content-type': 'application/json',
@@ -87,96 +94,15 @@ export const useUserStore = defineStore('user', () => {
 
         },
         method: "DELETE",
-      })
-
+      });
+      token = '';
+      router.push({path: '/'});
       isAuth.value = false;
-      accessToken = '';
     }
     catch (error) {
       return 'Ошибка сети, попробуйте позже';
     }
   }
 
-
-  //  Logic of Notes
-
-  async function getNotes() {
-    try {
-      const response = await fetch('https://dist.nd.ru/api/notes', {
-        headers: {
-          'Content-type': 'application/json',
-          'Authorization': 'Bearer ' + token
-
-        }
-      })
-
-      const data = response.json()
-      if (data.statusCode) {
-        return Array.isArray(data.message)
-          ? data.message[0]
-          : data.message;
-      }
-      return data;
-
-    }
-    catch (error) {
-      return 'Ошибка сети, попробуйте позже';
-    }
-  }
-
-  //  Structure of noteData
-  //      title : String
-  //      content : String
-  //     
-  async function addNote(noteData) {
-    try {
-      const response = await fetch('https://dist.nd.ru/api/notes', {
-        headers: {
-          'Content-type': 'application/json',
-          'Authorization': 'Bearer ' + token
-
-        },
-        method: "POST",
-        body: JSON.stringify({
-          title: noteData.title,
-          content: noteData.content
-        }
-        )
-      })
-      const data = await response.json()
-
-      if (data.statusCode) {
-        return Array.isArray(data.message)
-          ? data.message[0]
-          : data.message;
-      }
-    }
-    catch (error) {
-      return 'Ошибка сети, попробуйте позже';
-    }
-  }
-
-  async function removeNote(id) {
-    try {
-      const response = await fetch(`https://dist.nd.ru/api/notes/${id}`, {
-        headers: {
-          'Content-type': 'application/json',
-          'Authorization': 'Bearer ' + token
-        },
-        method: "DELETE",
-      })
-
-      const data = await response.json()
-      if (data.statusCode) {
-        return Array.isArray(data.message)
-          ? data.message[0]
-          : data.message;
-      }
-    }
-    catch (error) {
-      return 'Ошибка сети, попробуйте позже';
-    }
-  }
-
-  return { isAuth, email, getEmail, setData, SignIn, SignUp, exitUser, getNotes, addNote, removeNote }
+  return { isAuth, email,getToken, getEmail, setData, SignIn, SignUp, exitUser }
 })

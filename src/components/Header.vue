@@ -4,13 +4,16 @@
             <source media="(max-width: 550px)" srcset="../assets/logoMobile.png" v-if="isAuth">
             <img src="../assets/logo.png" alt="MyNotes" class="logo">
         </picture>
-        <button v-if="!isAuth" class="signInButton" @click="openWindow.window = 'SignIn'">Вход</button>
+        <button v-if="!isAuth" class="signInButton" @click="openWindow.window = 'SignIn'"> 
+            <ProfileIcon />
+            Вход</button>
         <Profile v-else />
     </header>
 </template>
 
 <script setup>
 import { ref, computed } from 'vue';
+import ProfileIcon from '../IconsVue/SignInIcon.vue'
 import Profile from "./Profile.vue";
 import { useUserStore } from '../store/UserStore'
 
@@ -35,14 +38,6 @@ header {
     align-items: center;
     gap: 15px;
 
-}
-
-.signInButton::before {
-    content: '';
-    width: 24px;
-    height: 24px;
-    background-image: url('../assets/Icons/SignInIcon.png');
-    background-size: 100% 100%;
 }
 
 @media screen and (max-width: 799px) {

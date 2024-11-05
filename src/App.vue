@@ -1,6 +1,6 @@
 <script setup>
 import HeaderComponent from './components/Header.vue'
-import MainCompontent from './components/MainContent.vue';
+
 import { ref } from 'vue'
 
 const showWindow = ref({
@@ -12,7 +12,7 @@ const showWindow = ref({
 <template>
   <section>
     <HeaderComponent v-model="showWindow" />
-    <MainCompontent v-model="showWindow" />
+    <RouterView v-model="showWindow" />
   </section>
 </template>
 

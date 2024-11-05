@@ -8,28 +8,31 @@
     </section>
 </template>
 <script setup>
-import ToDoItem from "./ToDoItem.vue"
-import AddToDoItemForm from "./AddToDoForm.vue"
+import ToDoItem from "../components/ToDoItem.vue"
+import AddToDoItemForm from "../components/AddToDoForm.vue"
 import addIcon from '../IconsVue/AddIcon.vue'
 import { useUserStore } from '../store/UserStore';
+import { useNoteStore } from '../store/NoteStore';
 import { onMounted, ref } from 'vue'
 
 const showAddForm = ref(false);
-const store = useUserStore();
+const userStore = useUserStore();
+const noteStore = useNoteStore();
 const ToDoItems = ref([]);
 
 onMounted(async () => {
-    ToDoItems.value = await store.getNotes();
+    await noteStore.getNotes(userStore.getToken())
+    ToDoItems.value = noteStore.Notes;
+
 })
 
 async function addNote(data) {
-    await store.addNote(data);
-    ToDoItems.value = await store.getNotes();
+    await noteStore.addNote(data, userStore.getToken());
     showAddForm.value = false;
 }
 async function removeNote(id) {
-    await store.removeNote(id);
-    ToDoItems.value = await store.getNotes();
+    console.log(id)
+    await noteStore.removeNote(id, userStore.getToken());
 }
 </script>
 
@@ -38,8 +41,11 @@ async function removeNote(id) {
     position: fixed;
     bottom: 2em;
     right: 2em;
-   
+    background: 50% 50%;
     background: var(--green);
+    background-image: url('../assets/Icons/AddIcon.png');
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
     padding: 20px;
     border-radius: 50%;
     z-index: 2;

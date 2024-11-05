@@ -14,8 +14,7 @@
       <div class="FieldItem hidePassword">
         <input :type="showPassword ? 'text' : 'password'" id="password" placeholder="Введите значение"
           v-model.trim="formData.password" />
-        <img :src="showPassword ? onPasswordIcon : offPasswordIcon"
-          alt="Toggle Password Visibility" @click="togglePasswordVisibility" />
+          <component :is="showPassword ? onPasswordIcon : offPasswordIcon" @click="togglePasswordVisibility" />
       </div>
     </div>
 
@@ -24,13 +23,11 @@
       <div class="FieldItem hidePassword">
         <input :type="showConfirmPassword ? 'text' : 'password'" id="confirmPassword" placeholder="Введите значение"
           v-model.trim="formData.confirmPassword" />
-        <img
-          :src="showConfirmPassword ?onPasswordIcon : offPasswordIcon"
-          alt="Toggle Confirm Password Visibility" @click="toggleConfirmPasswordVisibility" />
+          <component :is="showConfirmPassword ? onPasswordIcon : offPasswordIcon" @click="toggleConfirmPasswordVisibility" />
       </div>
     </div>
 
-    <div class="action">
+    <div class="linkToOtherForm">
       <p>
         У вас есть аккаунт?
         <a href="#" class="link" @click.prevent="changeForm('SignIn')">Войдите</a>
@@ -43,15 +40,16 @@
       <p>{{ Errors }}</p>
     </div>
 
-    <button class="closeWindow" @click.prevent="changeForm('none')"></button>
+    <closeIcon class="closeWindow" @click.prevent="changeForm('none')" />
   </form>
 </template>
 
 <script setup>
 import { ref } from 'vue';
 import { useUserStore } from '../store/UserStore';
-import onPasswordIcon from '../assets/Icons/onPasswordIcon.png';
-import offPasswordIcon from '../assets/Icons/offPasswordIcon.png';
+import onPasswordIcon from '../IconsVue/onPasswordIcon.vue';
+import offPasswordIcon from '../IconsVue/offPasswordIcon.vue';
+import closeIcon from '../IconsVue/CloseIcon.vue';
 
 const store = useUserStore();
 const emit = defineEmits(['changeForm']);
@@ -132,6 +130,12 @@ img {
 @media screen and (max-width: 799px) {
   h3 {
     margin: 0.4em 0;
+  }
+}
+@media screen and (max-width: 550px) {
+  h3 {
+    width: 100%;
+    font-size: 40px;
   }
 }
 </style>

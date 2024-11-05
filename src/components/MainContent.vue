@@ -1,17 +1,14 @@
 <template>
-    <section v-if="!store.isAuth" class="MainPage">
+    <section class="MainPage">
         <div class="info">
             <h1 class="titleMainPage">Мои заметки</h1>
             <p class="descriptionMainPage">Не забывай о важном храни его в облаке</p>
         </div>
         <img src="../assets/bgMainPage.png" alt="Work" />
-        <SignInComponent v-if="openWindow.window === 'SignIn'" @changeForm="(form) => { openWindow.window = form }" />
-        <SignUpComponent v-if="openWindow.window === 'SignUp'" @changeForm="(form) => { openWindow.window = form }" />
+        <SignInComponent  v-if="openWindow.window === 'SignIn'" @changeForm = "(form) => openWindow.window = form "/>
+        <SignUpComponent   v-if="openWindow.window === 'SignUp'" @changeForm = "(form) => openWindow.window = form " />
     </section>
 
-    <section v-else>
-        <ToDoList />
-    </section>
 </template>
 <script setup>
 import { ref, computed } from 'vue';

@@ -68,7 +68,11 @@ button:disabled {
 #app {
   width: 100%;
 }
-
+svg {
+  cursor: pointer;
+  min-height: 24px;
+  min-width: 24px;
+}
 /* Styling forms */
 
 
@@ -101,9 +105,11 @@ textarea {
   outline: none;
   background-color: transparent;
   width: 100%;
+  
 }
 
 .FieldItem {
+  
   border-radius: 36px;
   background-color: #fff;
   padding: 15px;
@@ -112,21 +118,15 @@ textarea {
   align-items: center;
   box-sizing: border-box;
 }
-.email::after {
-  content: '';
-  display: block;
-  background-image: url('./assets/Icons/EmailIcon.png');
-  background-size: 100% 100%;
-  width: 24px;
-  height: 24px;
-}
+
 .fieldGroup {
   display: flex;
   flex-direction: column;
   gap: 5px;
   width: 80%;
+  
 }
-.action {
+.linkToOtherForm {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -136,10 +136,6 @@ textarea {
   position: absolute;
   top: 1em;
   right: 1em;
-  background-image: url('./assets/Icons/CloseIcon.png') ;
-  background-repeat: no-repeat;
-  background-size: 50% 50%;
-  background-position: 50% 50%;
   border-radius: 50%;
   width: 2em;
   height: 2em;
@@ -171,7 +167,7 @@ textarea {
 }
 @media screen and (max-width: 550px) {
   form {
-    padding: 10px;
+    
     width: 100%;
     min-width: 350px;
     height: 100vh;
@@ -179,11 +175,13 @@ textarea {
     border-top-left-radius: 32px;
 
   }
-  .action {
+
+  .linkToOtherForm {
     flex-wrap: wrap;
     flex-direction: column-reverse;
     gap: 20px;
     width: 100%;
+    text-align: center;
   }
   .fieldGroup {
     width: 100%;

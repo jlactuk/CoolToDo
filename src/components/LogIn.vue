@@ -2,26 +2,24 @@
   <form @submit.prevent="SignIn">
     <h3>Вход в ваш аккаунт</h3>
 
-    <!-- Email Field -->
     <div class="fieldGroup">
       <label for="email">Емаил</label>
       <div class="FieldItem email">
-        <input type="email" id="email" placeholder="Введите значение" v-model="formData.email" />
+        <input type="email" id="email" placeholder="Введите значение" v-model="formData.email" autocomplete="off" />
+        <emailIcon />
       </div>
     </div>
 
     <div class="fieldGroup">
       <label for="password">Пароль</label>
       <div class="FieldItem hidePassword">
-        <input :type="showPassword ? 'text' : 'password'" id="password" placeholder="Введите значение"
-          v-model="formData.password" />
-          <img :src="showPassword ? onPasswordIcon : offPasswordIcon"
-       alt="Toggle Password Visibility"
-       @click="togglePasswordVisibility" />
+        <input :type="showPassword ? 'text' : 'password'" id="password" placeholder="Введите значение" autocomplete="false"
+        v-model="formData.password" />
+        <component :is="showPassword ? onPasswordIcon : offPasswordIcon" @click="togglePasswordVisibility" />
       </div>
     </div>
 
-    <div class="action">
+    <div class="linkToOtherForm">
       <p>
         У вас нет аккаунта?
         <a href="#" class="link" @click.prevent="changeForm('SignUp')">Зарегистрируйтесь</a>
@@ -33,15 +31,17 @@
       <p>{{ Errors }}</p>
     </div>
 
-    <button class="closeWindow" @click.prevent.stop="changeForm('none')"></button>
+    <closeIcon class="closeWindow" @click.prevent="changeForm('none')" />
   </form>
 </template>
 
 <script setup>
 import { ref } from 'vue';
 import { useUserStore } from '../store/UserStore';
-import onPasswordIcon from '../assets/Icons/onPasswordIcon.png';
-import offPasswordIcon from '../assets/Icons/offPasswordIcon.png';
+import onPasswordIcon from '../IconsVue/onPasswordIcon.vue';
+import offPasswordIcon from '../IconsVue/offPasswordIcon.vue';
+import emailIcon from '../IconsVue/EmailIcon.vue';
+import closeIcon from '../IconsVue/CloseIcon.vue';
 
 const store = useUserStore();
 const emit = defineEmits(['changeForm']);
